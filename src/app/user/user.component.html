@@ -1,0 +1,27 @@
+<mat-sidenav-container class="example-container border">
+  <mat-sidenav #sidenav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" class="bg-purple text-white" opened>
+      <p class="h5 text-center pt-5 pl-4 pr-5">Linc Hotels and Resorts</p>
+      <p class="text-center h6 pl-4 pr-5">User View</p>
+      <mat-nav-list class="mt-5 text-center">
+          <a class="text-white text-center h5" mat-list-item routerLink="dashboard" routerLinkActive="active"><i class="fa fa-tachometer pr-1"></i> Dashboard</a>
+          <a class="text-white text-center h5" mat-list-item routerLink="profile" routerLinkActive="active"><i class="fa fa-user pr-1"></i> Profile</a>
+          <a class="text-white text-center h5" mat-list-item routerLink="recent-visit" routerLinkActive="active"><i class="fa fa-user pr-1"></i> Recent Visit</a>
+          <a class="text-white text-center h5" mat-list-item routerLink="trans-history" routerLinkActive="active"><i class="fa fa-lock pr-1"></i> Transaction History</a>
+          <a class="text-white text-center h5" mat-list-item routerLink="report" routerLinkActive="active"><i class="fa fa-bug pr-1"></i> Report an Issue</a>
+      </mat-nav-list>
+      <p class="h6 text-center ml-5" id="logoutBtn" (click)="logOut()"><i class="fa fa-sign-out"></i>Log Out</p>
+  </mat-sidenav>
+  <mat-sidenav-content>
+      <!-- <mat-progress-bar mode="query" color="warn"></mat-progress-bar> -->
+      <mat-toolbar color="" class="example-toolbar border-bottom">
+          <button mat-icon-button (click)="sidenav.toggle()" [class.d-none]="true"><mat-icon>menu</mat-icon></button>
+          <!-- <mat-spinner color="warn" [diameter]="30" class="pl-2"></mat-spinner> -->
+          <div class="float-right">
+            <h1>Welcome Back, {{user.firstName}} {{user.lastName}}</h1>
+          </div>
+        </mat-toolbar>
+      <div class="p-3">
+          <router-outlet></router-outlet>
+      </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

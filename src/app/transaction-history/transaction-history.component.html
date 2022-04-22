@@ -1,0 +1,24 @@
+<p>transaction-history works!</p>
+<p class="h5 animate__animated animate__fadeOut animate__slower animate__infinite" *ngIf="history.length == 0">No recent transaction</p>
+<table class="table table-hover" *ngIf="history.length !== 0">
+  <thead>
+    <tr>
+      <th>S/N</th>
+      <th>Room Category</th>
+      <th>Payment Ref</th>
+      <th>Amount</th>
+      <th>Payment Date</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let each of history; let i=index">
+      <td>{{i + 1}}</td>
+      <td>{{each.roomCategory}}</td>
+      <td>{{each.payment_ref}}</td>
+      <td>{{each.amount | currency: 'NGN': 'symbol-narrow'}}</td>
+      <td>{{each.created_at | date}}</td>
+      <td>{{each.payment_status}}</td>
+    </tr>
+  </tbody>
+</table>

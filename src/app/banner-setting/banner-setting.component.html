@@ -1,0 +1,36 @@
+<h2>Landing Page Setting - Carousel</h2>
+<form action="" enctype="multipart/form-data">
+  <div class="form-group">
+    <input type="file" name="" id="" class="form-control" (change)="getTheBanner($event)">
+  </div>
+  <mat-form-field appearance="outline" class="w-50 p-1">
+    <mat-label>Bannner Caption</mat-label>
+    <input type="text" name="" placeholder="Luxury Place to be" matInput [formControl]="caption">
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="w-50 p-1">
+    <mat-label>Bannner Sub-Caption</mat-label>
+    <input type="text" name="" placeholder="Enjoy at its peak" matInput [formControl]="subCaption">
+  </mat-form-field>
+  <button mat-raised-button style="background-color: purple; color: white;" (click)="setTheBanner()">Set Banner Now <span [class.d-none]="noSpinnerShow" class="spinner-border spinner-border-sm"></span></button>
+</form>
+<!-- Table of Banners -->
+<table class="table" *ngIf="bannerFiles.length !== 0">
+  <tr>
+    <th>S/N</th>
+    <th>File Name</th>
+    <th>Preview</th>
+    <th>Caption</th>
+    <th>SubCaption</th>
+    <th>Action</th>
+    <th>Action</th>
+  </tr>
+  <tr *ngFor="let files of bannerFiles; let i=index">
+    <td>{{i + 1}}</td>
+    <td>{{files.banner}}</td>
+    <td><img src="assets/images/{{files.banner}}" class="fileImg"></td>
+    <td>{{files.caption}}</td>
+    <td>{{files.subCaption}}</td>
+    <td><button mat-raised-button style="background-color: purple; color: white;">Edit File</button></td>
+    <td><button mat-raised-button style="background-color: purple; color: white;">Delete</button></td>
+  </tr>
+</table>

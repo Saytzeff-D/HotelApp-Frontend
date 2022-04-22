@@ -1,0 +1,28 @@
+.example-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #eee;
+}
+.active{
+  color: black !important;
+  font-weight: bolder;
+  background-color: white !important;
+  width: 100%;
+}
+#sidenavLink{
+  cursor: pointer;
+}
+#logoutBtn{
+  cursor: pointer;
+  position: absolute;
+  bottom: 20px;
+}
+.float-right{
+  float: right !important;
+}
+.bg-purple{
+  background-color: purple;
+}

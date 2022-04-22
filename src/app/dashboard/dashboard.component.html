@@ -1,0 +1,62 @@
+<p>dashboard works!</p>
+<div>
+  <div class="row">
+    <div class="col-md-3 font-weight-bold">
+      <mat-card>
+        First Name:
+        <hr class="pb-2">
+        {{loggedUser.firstName}}
+      </mat-card>
+    </div>
+    <div class="col-md-3 font-weight-bold">
+      <mat-card>
+        Last Name:
+        <hr class="pb-2">
+        {{loggedUser.lastName}}
+      </mat-card>
+    </div>
+    <div class="col-md-3 font-weight-bold">
+      <mat-card>
+        Email:
+        <hr class="pb-2">
+        {{loggedUser.email}}
+      </mat-card>
+    </div>
+    <div class="col-md-3 font-weight-bold">
+      <mat-card>
+        Mobile:
+        <hr class="pb-2">
+        {{loggedUser.mobileNumber}}
+      </mat-card>
+    </div>
+  </div>
+</div>
+<hr>
+<!-- Carousel -->
+<div id="carouselExampleIndicators" class="container carousel slide" data-ride="carousel">
+    <div class="carousel-inner pt-2">
+      <div class="carousel-item carouselImg" *ngFor="let i = index; let roomArr of roomGroups" [class.active]="i == 0" data-interval="5000">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4" *ngFor="let each of roomArr; let i=index">
+              <div class="card roomCard">
+                <img src="assets/images/{{each.roomPic}}" alt="" class="card-img-top img">
+                <div class="card-body">
+                  <div class="h5 card-title text-center text-uppercase">
+                    {{each.room_category}}
+                  </div>
+                  <div class="card-text text-center text-muted">
+                    <p>{{each.price | currency: 'NGN': 'symbol-narrow'}}/ per night</p>
+                    <p>{{each.numOf_available_rooms}} rooms available</p>
+                  </div>
+                  <div class="d-flex justify-content-center">
+                    <button mat-raised-button style="background-color: purple; color: white;" (click)="clickBook(each.room_category)">Book Now</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>

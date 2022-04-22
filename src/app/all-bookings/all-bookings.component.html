@@ -1,0 +1,33 @@
+<p>all-bookings works!</p>
+<p class="h5 animate__animated animate__fadeOut animate__slower animate__infinite" *ngIf="bookingRecords.length == 0">No recent Bookings</p>
+<div *ngIf="bookingRecords.length !== 0">
+  <input type="text" class="form-control" [(ngModel)]="filterUser" placeholder="Search Customer" style="border-radius: 50px;">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>S/N</th>
+        <th>User</th>
+        <th>Room Category</th>
+        <th>CheckIn - CheckOut</th>
+        <th>Rooms</th>
+        <th>Nights</th>
+        <th>Guests</th>
+        <!-- <th>Status</th> -->
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let i=index; let each of bookingRecords | bookingsFilter:filterUser">
+        <td>{{i + 1}}</td>
+        <td>{{each.firstName}} {{each.lastName}}</td>
+        <td>{{each.roomCategory}}</td>
+        <td>{{each.checkIn |date}} - {{each.checkOut | date}}</td>
+        <td>{{each.numOfRooms}} room</td>
+        <td>{{each.numOfNights}} nights</td>
+        <td>{{each.numOfGuests}} guest</td>
+        <!-- <td>{{each.payment_status}}</td> -->
+        <td><button mat-raised-button class="btn-danger">Check Out</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
