@@ -46,6 +46,9 @@ export class RegisterComponent implements OnInit {
         sessionStorage.setItem('successMsg', msg)
         this.router.navigate(['login'])
       } else {
+        this.noSpinnerShow = true
+        this.dontShowWord = false
+        console.log(res)
         alert('Unable to process your request')
       }
     })
