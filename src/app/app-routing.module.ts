@@ -26,13 +26,14 @@ const routes: Routes = [
   {path: 'hotel-category', component: HotelCategoryComponent},
   {path: 'book-room', component: BookRoomComponent},
   {path: 'payNow', component: PaymentComponent},
-  {path: 'admin', component: AdminComponent, children:[
+  {path: 'admin', component: AdminComponent, children: [
     {path: 'banner-setting', component: BannerSettingComponent},
     {path: 'roomDetails', component: RoomDetailsComponent},
     {path: 'bookingsRecords', component: AllBookingsComponent},
     {path: 'verifyPayment', component: VerifyPaymentComponent}
   ]},
-  {path: 'user', component: UserComponent, children:[
+  { path: 'user', pathMatch: 'full', redirectTo: '/user/dashboard' },
+  {path: 'user', component: UserComponent, children: [
     {path: 'dashboard', component: DashboardComponent},
     {path: 'profile', component: ProfileComponent},
     {path: 'recent-visit', component: RecentVisitComponent},
