@@ -26,3 +26,6 @@
 .bg-purple{
   background-color: purple;
 }
+mat-sidenav {
+  width: 200px;
+}

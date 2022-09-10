@@ -1,5 +1,7 @@
-<p>all-bookings works!</p>
-<p class="h5 animate__animated animate__fadeOut animate__slower animate__infinite" *ngIf="bookingRecords.length == 0">No recent Bookings</p>
+<p  class="h5 animate__animated animate__fadeOut animate__slower animate__infinite" *ngIf="bookingRecords.length == 0 && !isLoading">No recent Bookings</p>
+<div *ngIf="isLoading">
+  <span class="spinner-border text-danger"></span>
+</div>
 <div *ngIf="bookingRecords.length !== 0">
   <input type="text" class="form-control" [(ngModel)]="filterUser" placeholder="Search Customer" style="border-radius: 50px;">
   <table class="table table-hover">

@@ -9,11 +9,13 @@ import { LaravelServerService } from '../services/laravel-server.service';
 export class TransactionHistoryComponent implements OnInit {
 
   public history:any = []
+  public isLoading = true
   constructor(public server: LaravelServerService) { }
 
   ngOnInit(): void {
     this.server.transHistory().subscribe(data=>{
       this.history = data
+      this.isLoading = false
     })
   }
 

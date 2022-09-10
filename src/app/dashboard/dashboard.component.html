@@ -1,29 +1,33 @@
-<p>dashboard works!</p>
+<p> <i class="fa fa-tachometer"></i> Dashboard</p>
 <div>
   <div class="row">
     <div class="col-md-3 font-weight-bold">
-      <mat-card>
+      <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+      <mat-card *ngIf="!isLoading">
         First Name:
         <hr class="pb-2">
         {{loggedUser.firstName}}
       </mat-card>
     </div>
     <div class="col-md-3 font-weight-bold">
-      <mat-card>
+      <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+      <mat-card *ngIf="!isLoading">
         Last Name:
         <hr class="pb-2">
         {{loggedUser.lastName}}
       </mat-card>
     </div>
     <div class="col-md-3 font-weight-bold">
-      <mat-card>
+      <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+      <mat-card *ngIf="!isLoading">
         Email:
         <hr class="pb-2">
         {{loggedUser.email}}
       </mat-card>
     </div>
     <div class="col-md-3 font-weight-bold">
-      <mat-card>
+      <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+      <mat-card *ngIf="!isLoading">
         Mobile:
         <hr class="pb-2">
         {{loggedUser.mobileNumber}}

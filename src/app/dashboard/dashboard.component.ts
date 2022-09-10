@@ -13,6 +13,7 @@ export class DashboardComponent implements OnInit {
   public rooms:any = []
   public currentIndex = 0
   public roomGroups = []
+  public isLoading = true
   constructor(public server: LaravelServerService, public router: Router) {
     server.user.subscribe(obj=>{
       this.loggedUser = obj
@@ -23,6 +24,7 @@ export class DashboardComponent implements OnInit {
     this.server.getMethod('roomDetails').subscribe(data=>{
       console.log(data)
       this.rooms = data
+      this.isLoading = false
       this.multipleRoomArray()
     })
   }

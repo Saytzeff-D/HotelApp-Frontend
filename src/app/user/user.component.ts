@@ -1,6 +1,8 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {MediaMatcher} from '@angular/cdk/layout';
+import {MediaMatcher, BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import { Observable } from 'rxjs';
+import { map, shareReplay } from 'rxjs/operators';
 import { LaravelServerService } from '../services/laravel-server.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
@@ -11,13 +13,18 @@ import { DialogComponent } from '../dialog/dialog.component';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
+  public isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+    .pipe(
+      map(result => result.matches),
+      shareReplay()
+    );
 
   mobileQuery: MediaQueryList;
   panelOpenState = false;
 
   private _mobileQueryListener: () => void;
   public user:any = {}
-  constructor(public server: LaravelServerService, public router: Router, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, public dialogRef: MatDialog) {
+  constructor(public server: LaravelServerService, public router: Router, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, public dialogRef: MatDialog, private breakpointObserver: BreakpointObserver) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -28,7 +35,7 @@ export class UserComponent implements OnInit {
   opened: boolean
 
   ngOnInit(): void {
-    this.server.fetchUser().subscribe((data:any)=>{
+    this.server.fetchUser().subscribe((data: any)=>{
         this.user = data
         this.server.user.next(data)
     }, error=>{
@@ -39,7 +46,7 @@ export class UserComponent implements OnInit {
     })
   }
   logOut(){
-    this.dialogRef.open(DialogComponent)
+    this.dialogRef.open(DialogComponent, {disableClose: true})
   }
 
 }

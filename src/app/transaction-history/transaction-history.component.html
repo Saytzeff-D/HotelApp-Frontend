@@ -1,5 +1,10 @@
-<p>transaction-history works!</p>
-<p class="h5 animate__animated animate__fadeOut animate__slower animate__infinite" *ngIf="history.length == 0">No recent transaction</p>
+<div>
+  <p class="display-4">Transaction History</p>
+  <div *ngIf="isLoading">
+    <span class="spinner-border text-danger"></span>
+  </div>
+</div>
+<p class="h5 animate__animated animate__fadeOut animate__slower animate__infinite" *ngIf="history.length == 0 && !isLoading">No recent transaction</p>
 <table class="table table-hover" *ngIf="history.length !== 0">
   <thead>
     <tr>

@@ -14,7 +14,15 @@
   <mat-sidenav-content>
       <!-- <mat-progress-bar mode="query" color="warn"></mat-progress-bar> -->
       <mat-toolbar color="" class="example-toolbar border-bottom">
-          <button mat-icon-button (click)="sidenav.toggle()" [class.d-none]="true"><mat-icon>menu</mat-icon></button>
+        <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="sidenav.toggle()"
+        *ngIf="isHandset$ | async"
+      >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
           <!-- <mat-spinner color="warn" [diameter]="30" class="pl-2"></mat-spinner> -->
           <div class="float-right">
             <h1>Welcome Back, {{user.firstName}} {{user.lastName}}</h1>

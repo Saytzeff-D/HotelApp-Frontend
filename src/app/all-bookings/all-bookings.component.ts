@@ -10,12 +10,14 @@ export class AllBookingsComponent implements OnInit {
 
   public filterUser;
   public bookingRecords:any = []
+  public isLoading = true
   constructor(public server: LaravelServerService) { }
 
   ngOnInit(): void {
     this.server.allBookings().subscribe(data=>{
       console.log(data)
       this.bookingRecords = data
+      this.isLoading = false
     })
   }
 

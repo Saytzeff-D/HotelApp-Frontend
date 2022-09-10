@@ -10,11 +10,13 @@ export class RecentVisitComponent implements OnInit {
 
   public filterVisit;
   public visits:any = []
+  public isLoading = true
   constructor(public server: LaravelServerService) { }
 
   ngOnInit(): void {
     this.server.myVisits().subscribe(data=>{
       this.visits = data
+      this.isLoading = false
     })
   }
 
