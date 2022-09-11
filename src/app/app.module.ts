@@ -24,6 +24,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MaterialModule } from './material/material.module';
 import { RoomDetailsComponent } from './room-details/room-details.component';
@@ -89,6 +90,7 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
     LayoutModule,
     MatListModule,
     MatProgressBarModule,
+    MatProgressSpinnerModule,
     MaterialModule,
     MatSnackBarModule,
     MatCardModule,
