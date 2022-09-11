@@ -41,13 +41,14 @@ export class BookRoomComponent implements OnInit {
   }
 
   bookNow(){
+    this.error = ''
     this.bookRoom.value.numOfNights = this.dateDiff
     sessionStorage.removeItem('bookRoomInfo')
     sessionStorage.removeItem('roomCategory')
     if (this.bookRoom.value.checkIn && this.bookRoom.value.checkOut && this.bookRoom.value.numOfNights && this.bookRoom.value.numOfRooms && this.bookRoom.value.numOfGuests && this.bookRoom.value.roomCategory !== '' && this.bookRoom.value.roomCategory !== null) {
         this.noSpinnerShow = false
         this.dontShowWord = true
-        let roomInfo = {roomCategory: this.bookRoom.value.roomCategory, numOfRooms: this.bookRoom.value.numOfRooms}
+        const roomInfo = {roomCategory: this.bookRoom.value.roomCategory, numOfRooms: this.bookRoom.value.numOfRooms}
         this.server.checkAvailableRoom(roomInfo).subscribe(res=>{
           console.log(res)
           if (res == 'Checked') {
@@ -56,9 +57,10 @@ export class BookRoomComponent implements OnInit {
           } else {
             this.noSpinnerShow = true
             this.dontShowWord = false
-            this.error = 'The number of rooms you are about to book has exceeded the available rooms we have'
+            this.error = 'This room is unavailable at the moment'
           }
         }, error=>{
+          console.log(error)
           console.log(error.error.message)
           if (error.error.message == 'Token has expired' || error.error.message == 'Wrong number of segments') {
             sessionStorage.setItem('route', 'Book-Room')

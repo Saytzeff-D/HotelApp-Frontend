@@ -1,10 +1,16 @@
-<p>dialog works!</p>
-<div>
+<div *ngIf="!loggingOut">
   <div mat-dialog-content>
-    <p mat-dialog-title>Are you sure you want to logout</p>
+    <p mat-dialog-title>Are you sure you want to logout?</p>
   </div>
   <div mat-dialog-actions>
     <button mat-button cdkFocusInitial (click)="onNoClick()">No</button>
     <button mat-button (click)="onYesClick()">Yes</button>
   </div>
+</div>
+
+<div *ngIf="loggingOut">
+  <div class="d-flex justify-content-center">
+    <mat-progress-spinner mode="indeterminate" ></mat-progress-spinner>
+  </div>
+  <p class="h3 text-center">Logging out...</p>
 </div>

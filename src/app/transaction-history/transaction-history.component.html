@@ -1,11 +1,11 @@
 <div>
-  <p class="display-4">Transaction History</p>
+  <p class="h3">Transaction History</p>
   <div *ngIf="isLoading">
     <span class="spinner-border text-danger"></span>
   </div>
 </div>
 <p class="h5 animate__animated animate__fadeOut animate__slower animate__infinite" *ngIf="history.length == 0 && !isLoading">No recent transaction</p>
-<table class="table table-hover" *ngIf="history.length !== 0">
+<table class="table table-hover table-responsive-md" *ngIf="history.length !== 0">
   <thead>
     <tr>
       <th>S/N</th>
@@ -20,10 +20,10 @@
     <tr *ngFor="let each of history; let i=index">
       <td>{{i + 1}}</td>
       <td>{{each.roomCategory}}</td>
-      <td>{{each.payment_ref}}</td>
+      <td>{{each.checkOut}}</td>
       <td>{{each.amount | currency: 'NGN': 'symbol-narrow'}}</td>
       <td>{{each.created_at | date}}</td>
-      <td>{{each.payment_status}}</td>
+      <td>{{each.payment_status}} <span *ngIf="today" class="badge badge-success" >active</span> </td>
     </tr>
   </tbody>
 </table>

@@ -31,6 +31,8 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
+    this.success = null
+    this.error = null
     let initalRoute = sessionStorage.getItem('route')
     if (this.email.value && this.password.value !== '') {
       this.noSpinnerShow = false
@@ -42,7 +44,7 @@ export class LoginComponent implements OnInit {
           this.dontShowWord = false
         if(this.backEndRes.error){
           this.success = null
-          this.error = this.backEndRes.error
+          this.error = 'Invalid Login'
         }
         else{
           localStorage.setItem('JWT', this.backEndRes.access_token)

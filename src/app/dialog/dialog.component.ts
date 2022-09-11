@@ -9,6 +9,7 @@ import { LaravelServerService } from '../services/laravel-server.service';
   styleUrls: ['./dialog.component.css']
 })
 export class DialogComponent implements OnInit {
+  public loggingOut = false
 
   constructor(public dialogRef: MatDialogRef<DialogComponent>, public server: LaravelServerService, public router: Router) { }
 
@@ -18,6 +19,7 @@ export class DialogComponent implements OnInit {
     this.dialogRef.close()
   }
   onYesClick(){
+    this.loggingOut = true
     localStorage.removeItem('JWT')
     this.server.logout().subscribe((res:any)=>{
       if(res.message == 'Successfully logged out'){
