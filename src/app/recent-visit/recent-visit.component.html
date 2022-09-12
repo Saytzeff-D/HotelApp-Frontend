@@ -6,7 +6,7 @@
   <p class="h5 animate__animated animate__fadeIn animate__slower" *ngIf="visits.length == 0 && !isLoading">No recent Visits</p>
   <div *ngIf="visits.length !== 0">
     <input type="text" class="form-control" [(ngModel)]="filterVisit" placeholder="Search by Date" style="border-radius: 50px;">
-    <table class="table table-hover">
+    <table class="table table-hover table-responsive-md">
       <tr>
         <th>S/N</th>
         <th>Check In</th>
