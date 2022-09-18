@@ -25,7 +25,7 @@
         <td>{{each.numOfNights}} nights</td>
         <td>{{each.numOfRooms}} room</td>
         <td>{{each.numOfGuests}} guest</td>
-        <td><button [class]="each.room_status == 'Active'? 'btn btn-success animate__animated animate__flash animate__slower animate__infinite': 'btn btn-danger'" disabled>{{each.room_status}}</button></td>
+        <td><button [class]="each.room_status == 'Active' ? 'btn btn-success animate__animated animate__flash animate__slower animate__infinite' : 'btn btn-danger'" disabled>{{each.room_status}} </button></td>
       </tr>
     </table>
   </div>
