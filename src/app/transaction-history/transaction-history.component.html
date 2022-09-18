@@ -20,10 +20,10 @@
     <tr *ngFor="let each of history; let i=index">
       <td>{{i + 1}}</td>
       <td>{{each.roomCategory}}</td>
-      <td>{{each.checkOut}}</td>
+      <td class="fs-1" >{{each.payment_ref}}</td>
       <td>{{each.amount | currency: 'NGN': 'symbol-narrow'}}</td>
       <td>{{each.created_at | date}}</td>
-      <td>{{each.payment_status}} <span *ngIf="today" class="badge badge-success" >active</span> </td>
+      <td>{{each.payment_status}} <span *ngIf="today" class="badge text-lowercase" [class]="each.room_status == 'Active' ? 'badge-success' : 'badge-danger'" >{{each.room_status}}</span> </td>
     </tr>
   </tbody>
 </table>
