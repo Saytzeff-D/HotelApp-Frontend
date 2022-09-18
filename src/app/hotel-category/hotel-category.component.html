@@ -41,4 +41,7 @@
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
     </a>
-  </div>
+</div>
+<div *ngIf="isLoading" class="d-flex justify-content-center">
+  <mat-progress-spinner mode="indeterminate" ></mat-progress-spinner>
+</div>

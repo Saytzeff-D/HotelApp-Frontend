@@ -12,11 +12,13 @@ export class HotelCategoryComponent implements OnInit {
   public rooms:any = []
   public currentIndex = 0
   public roomGroups = []
+  public isLoading = true
   constructor(public server: LaravelServerService, public router: Router) { }
 
   ngOnInit(): void {
     this.server.getMethod('roomDetails').subscribe(details=>{
       this.rooms = details
+      this.isLoading = false
       this.multipleRoomArray()
     })
   }

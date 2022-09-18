@@ -12,15 +12,18 @@ export class BannerSettingComponent implements OnInit {
 
   public file;
   public caption = new FormControl('');
-  public subCaption = new FormControl('')
-  public noSpinnerShow = true
-  public response:any = {}
-  public bannerFiles:any = []
+  public subCaption = new FormControl('');
+  public noSpinnerShow = true;
+  public response: any = {};
+  public bannerFiles: any = [];
+  public isLoading = true;
+  public isDeleting = { index: '' };
   constructor(public server: LaravelServerService, public snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.server.getMethod('getBanner').subscribe(banner=>{
       this.bannerFiles = banner
+      this.isLoading = false
     })
   }
   getTheBanner(event){
@@ -49,6 +52,10 @@ export class BannerSettingComponent implements OnInit {
     else{
       this.snackBar.open('All fields are required', 'Redo', {duration: 3000})
     }
+  }
+  deleteBanner(banner, i){
+    this.isDeleting = { index: i };
+    console.log(banner, i);
   }
 
 }

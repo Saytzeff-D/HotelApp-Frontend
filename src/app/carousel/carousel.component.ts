@@ -9,16 +9,18 @@ import { LaravelServerService } from '../services/laravel-server.service';
 })
 export class CarouselComponent implements OnInit {
 
-  public imgArr:any = []
+  public imgArr: any = [ ];
+  public isLoading = true;
   constructor(public server: LaravelServerService, public router: Router) { }
 
   ngOnInit(): void {
-    this.server.getMethod('getBanner').subscribe(banners=>{
-      this.imgArr = banners
-      console.log(banners)
-    })
+    this.server.getMethod('getBanner').subscribe(banners => {
+      this.imgArr = banners;
+      this.isLoading = false;
+      console.log(banners);
+    });
   }
-  book(){
+  book(): any{
     this.router.navigate(['book-room']);
   }
 
