@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LaravelServerService } from '../services/laravel-server.service';
 
+export interface DialogData {
+  picture: string;
+}
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -9,32 +13,43 @@ import { LaravelServerService } from '../services/laravel-server.service';
 })
 export class ProfileComponent implements OnInit {
 
-  public profile:any = {}
-  constructor(public server: LaravelServerService, public snackBarRef: MatSnackBar) { }
+  public profile: any = {};
+  public isUploading = false;
+  constructor(@Inject (MAT_DIALOG_DATA) public dialogData: DialogData, public server: LaravelServerService, public snackBarRef: MatSnackBar, public dialogRef: MatDialogRef<ProfileComponent>) { }
 
   ngOnInit(): void {
-    this.server.user.subscribe(obj=>{
-      this.profile = obj
-    })
+    this.server.user.subscribe(obj => {
+      this.profile = obj;
+    });
   }
-  takePic(){
-    document.getElementById('userPic').click()
+  takePic(): any{
+    document.getElementById('userPic').click();
   }
-  uploadPic(event){
-    let pic = event.target.files[0]
-    let myFileData = new FormData()
-    myFileData.append('userPic', pic, pic.name)
-    this.server.uploadUserPic(myFileData).subscribe(res=>{
+  uploadPic(event): any{
+    this.isUploading = true;
+    const pic = event.target.files[0];
+    const myFileData = new FormData();
+    myFileData.append('userPic', pic, pic.name);
+    this.server.uploadUserPic(myFileData).subscribe(res => {
       if(res == 'Updated'){
-        console.log('Me')
+        this.dialogRef.close('Updated');
+      }else{
+        this.snackBarRef.open('Internal Server Error', 'Dismiss');
+        this.isUploading = false;
       }
-    })
+    }, err => {
+      this.snackBarRef.open('Unable to process your request', 'Dismiss');
+      this.isUploading = false;
+    });
   }
-  editProfile(){
-    let userObj = {me: '56'}
-    this.server.updateUserProfile(userObj).subscribe((res:any)=>{
-      this.snackBarRef.open(res, 'Undo', {duration: 3000})
-    })
+  editProfile(): any{
+    const userObj = {me: '56'};
+    this.server.updateUserProfile(userObj).subscribe((res: any) => {
+      this.snackBarRef.open(res, 'Undo', {duration: 3000});
+    });
+  }
+  onCancel(): any {
+    this.dialogRef.close();
   }
 
 }
