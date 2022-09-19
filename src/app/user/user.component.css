@@ -20,12 +20,12 @@
   position: absolute;
   bottom: 20px;
 }
-.float-right{
-  float: right !important;
-}
 .bg-purple{
   background-color: purple;
 }
 mat-sidenav {
   width: 200px;
+}
+.cursor-pointer {
+  cursor: pointer;
 }

@@ -6,6 +6,7 @@ import { map, shareReplay } from 'rxjs/operators';
 import { LaravelServerService } from '../services/laravel-server.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
+import { ProfileComponent } from '../profile/profile.component';
 
 @Component({
   selector: 'app-user',
@@ -40,13 +41,16 @@ export class UserComponent implements OnInit {
         this.server.user.next(data)
     }, error=>{
       if(error.error.message == 'Token has expired' || error.error.message == 'The token has been blacklisted' || error.error.message == 'Wrong number of segments'){
-        sessionStorage.setItem('errorMsg', 'You have to login first!')
-        this.router.navigate(['login'])
+        sessionStorage.setItem('errorMsg', 'You have to login first!');
+        this.router.navigate(['login']);
       }
-    })
+    });
   }
   logOut(){
-    this.dialogRef.open(DialogComponent, {disableClose: true})
+    this.dialogRef.open(DialogComponent, {disableClose: true});
+  }
+  viewPicture(imgUrl): any {
+    this.dialogRef.open(ProfileComponent, {data: { picture: imgUrl }} );
   }
 
 }
