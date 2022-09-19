@@ -9,7 +9,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatListModule } from '@angular/material/list';
-
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -24,7 +29,32 @@ import { MatListModule } from '@angular/material/list';
     MatButtonModule,
     MatToolbarModule,
     LayoutModule,
-    MatListModule
+    MatListModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule,
+    MatCardModule,
+    MatMenuModule,
+    MatAutocompleteModule,
+    MatDialogModule,
+  ],
+  exports: [
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatSnackBarModule,
+    MatButtonModule,
+    MatToolbarModule,
+    LayoutModule,
+    MatListModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule,
+    MatCardModule,
+    MatMenuModule,
+    MatAutocompleteModule,
+    MatDialogModule,
   ]
 })
 export class MaterialModule { }
