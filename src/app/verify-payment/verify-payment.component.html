@@ -10,7 +10,7 @@
       <th>S/N</th>
       <th>Customer's Name</th>
       <th>Customer's Email</th>
-      <th>Payment Reference</th>
+      <th>No of Rooms</th>
       <th>Amount Paid</th>
       <th>Room Category</th>
       <th>Status</th>
@@ -19,10 +19,18 @@
       <td>{{i+1}}</td>
       <td>{{each.firstName}} {{each.lastName}}</td>
       <td>{{each.email}}</td>
-      <td>{{each.payment_ref}}</td>
+      <td>{{each.numOfRooms}}</td>
       <td>{{each.amount |currency:'NGN':'symbol-narrow'}}</td>
       <td>{{each.roomCategory}}</td>
       <td>{{each.payment_status}}</td>
     </tr>
   </table>
+</div>
+
+<div *ngIf="refError !== ''"class="my-2 alert alert-info">
+  <p class="font-weight-bold">{{refError}}</p>
+</div>
+
+<div *ngIf="error !== ''" class="my-2 alert alert-danger">
+  <p class="font-weight-bold">{{error}}</p>
 </div>
