@@ -27,8 +27,8 @@
   </table>
 </div>
 
-<div *ngIf="refError !== ''"class="my-2 alert alert-info">
-  <p class="font-weight-bold">{{refError}}</p>
+<div *ngIf="expiredDate !== ''"class="my-2 alert alert-info">
+  <p class="font-weight-bold">Sorry, this payment expired on {{expiredDate | date: 'fullDate'}}</p>
 </div>
 
 <div *ngIf="error !== ''" class="my-2 alert alert-danger">

@@ -14,7 +14,7 @@ export class VerifyPaymentComponent implements OnInit {
   public payment_ref = '';
   public paymentDetails: any = [];
   public error = '';
-  public refError = '';
+  public expiredDate = '';
   constructor(public server: LaravelServerService, public snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
@@ -22,7 +22,7 @@ export class VerifyPaymentComponent implements OnInit {
 
   verify(){
     this.error = ''
-    this.refError = ''
+    this.expiredDate = ''
     this.paymentDetails = []
     this.noSpinnerShow = false
     this.dontShowWord = true
@@ -37,7 +37,7 @@ export class VerifyPaymentComponent implements OnInit {
           }else {
             this.noSpinnerShow = true;
             this.dontShowWord = false;
-            this.refError = 'Sorry, this payment has expired...';
+            this.expiredDate = data[0].checkOut;
           }
         }
         else{
