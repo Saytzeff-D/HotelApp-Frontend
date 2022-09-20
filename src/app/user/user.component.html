@@ -13,7 +13,7 @@
   </mat-sidenav>
   <mat-sidenav-content>
       <!-- <mat-progress-bar mode="query" color="warn"></mat-progress-bar> -->
-      <div color="" class="example-toolbar border-bottom py-3 px-2">
+      <mat-toolbar color="" class="example-toolbar border-bottom py-3 px-2">
         <button
         type="button"
         aria-label="Toggle sidenav"
@@ -31,7 +31,7 @@
             <mat-spinner [diameter]="35" *ngIf="!user.profilePic" ></mat-spinner>
             <img (click)="viewPicture('assets/images/' + user.profilePic)" src="assets/images/{{user.profilePic}}" class="rounded-circle cursor-pointer" width="35px" height="35px" alt="" *ngIf="user.profilePic">
           </div>
-      </div>
+        </mat-toolbar>
       <div class="p-3">
           <router-outlet></router-outlet>
       </div>

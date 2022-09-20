@@ -24,8 +24,14 @@ export class UserComponent implements OnInit {
   panelOpenState = false;
 
   private _mobileQueryListener: () => void;
-  public user:any = {}
-  constructor(public server: LaravelServerService, public router: Router, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, public dialogRef: MatDialog, private breakpointObserver: BreakpointObserver) {
+  public user: any = {};
+  constructor(
+    public server: LaravelServerService,
+    public router: Router,
+    changeDetectorRef: ChangeDetectorRef,
+    media: MediaMatcher,
+    public dialogRef: MatDialog,
+    private breakpointObserver: BreakpointObserver) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -33,13 +39,14 @@ export class UserComponent implements OnInit {
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
-  opened: boolean
+  opened: boolean;
 
   ngOnInit(): void {
     this.server.fetchUser().subscribe((data: any)=>{
-        this.user = data
-        this.server.user.next(data)
-    }, error=>{
+        this.user = data;
+        console.log(this.user.profilePic);
+        this.server.user.next(data);
+    }, error => {
       if(error.error.message == 'Token has expired' || error.error.message == 'The token has been blacklisted' || error.error.message == 'Wrong number of segments'){
         sessionStorage.setItem('errorMsg', 'You have to login first!');
         this.router.navigate(['login']);
