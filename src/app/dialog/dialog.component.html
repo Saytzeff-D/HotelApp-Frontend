@@ -1,4 +1,4 @@
-<div *ngIf="!loggingOut">
+<div *ngIf="!loggingOut && dialogData.type == 'logout'">
   <div mat-dialog-content>
     <p mat-dialog-title>Are you sure you want to logout?</p>
   </div>
@@ -13,4 +13,14 @@
     <mat-progress-spinner mode="indeterminate" ></mat-progress-spinner>
   </div>
   <p class="h3 text-center">Logging out...</p>
+</div>
+
+<div *ngIf="dialogData.type == 'checkOut'">
+  <p mat-dialog-title >Are you sure you want to check out this user?</p>
+  <div mat-dialog-content >
+    This user is supposedly to check out on {{dialogData.checkOut | date: 'fullDate'}}
+  </div>
+  <div mat-dialog-actions >
+    <button></button>
+  </div>
 </div>

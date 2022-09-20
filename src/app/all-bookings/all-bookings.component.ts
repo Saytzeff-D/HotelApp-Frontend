@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
 import { LaravelServerService } from '../services/laravel-server.service';
 
 @Component({
@@ -11,7 +13,7 @@ export class AllBookingsComponent implements OnInit {
   public filterUser;
   public bookingRecords:any = []
   public isLoading = true
-  constructor(public server: LaravelServerService) { }
+  constructor(public server: LaravelServerService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.server.allBookings().subscribe(data=>{
@@ -21,4 +23,8 @@ export class AllBookingsComponent implements OnInit {
     })
   }
 
+  checkOut(booking): any{
+    booking.type = 'checkOut';
+    this.dialog.open(DialogComponent, { data: booking });
+  }
 }
