@@ -57,10 +57,13 @@ export class LaravelServerService {
   allBookings(){
     return this.http.get(`${this.baseUrl}allBookings`);
   }
-  myVisits(){
+  myVisits(): any{
     return this.http.get(`${this.baseUrl}myVists`);
   }
-  verifyPayment(obj){
-    return this.http.post(`${this.baseUrl}verifyPay`, obj)
+  verifyPayment(obj): any{
+    return this.http.post(`${this.baseUrl}verifyPay`, obj);
+  }
+  checkOut(booking): any{
+    return this.http.patch(`${this.baseUrl}checkOut`, booking);
   }
 }
