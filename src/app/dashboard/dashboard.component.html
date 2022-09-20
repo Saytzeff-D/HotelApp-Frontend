@@ -1,7 +1,7 @@
 <p> <i class="fa fa-tachometer"></i> Dashboard</p>
 <div>
   <div class="row">
-    <div class="col-md-3 font-weight-bold">
+    <div class="col-lg-3 col-md-6 mb-1 font-weight-bold">
       <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
       <mat-card *ngIf="!isLoading">
         First Name:
@@ -9,7 +9,7 @@
         {{loggedUser.firstName}}
       </mat-card>
     </div>
-    <div class="col-md-3 font-weight-bold">
+    <div class="col-lg-3 col-md-6 mb-1 font-weight-bold">
       <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
       <mat-card *ngIf="!isLoading">
         Last Name:
@@ -17,7 +17,7 @@
         {{loggedUser.lastName}}
       </mat-card>
     </div>
-    <div class="col-md-3 font-weight-bold">
+    <div class="col-lg-3 col-md-6 mb-1 font-weight-bold">
       <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
       <mat-card *ngIf="!isLoading">
         Email:
@@ -25,7 +25,7 @@
         {{loggedUser.email}}
       </mat-card>
     </div>
-    <div class="col-md-3 font-weight-bold">
+    <div class="col-lg-3 col-md-6 mb-1 font-weight-bold">
       <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
       <mat-card *ngIf="!isLoading">
         Mobile:
@@ -41,8 +41,8 @@
     <div class="carousel-inner pt-2">
       <div class="carousel-item carouselImg" *ngFor="let i = index; let roomArr of roomGroups" [class.active]="i == 0" data-interval="5000">
         <div class="container">
-          <div class="row">
-            <div class="col-md-4" *ngFor="let each of roomArr; let i=index">
+          <div class="row w-100 mx-auto">
+            <div class="col-lg-4 col-md-6 mb-1" *ngFor="let each of roomArr; let i=index">
               <div class="card roomCard">
                 <img src="assets/images/{{each.roomPic}}" alt="" class="card-img-top img">
                 <div class="card-body">
