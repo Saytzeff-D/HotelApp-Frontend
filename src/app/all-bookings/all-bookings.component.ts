@@ -11,20 +11,22 @@ import { LaravelServerService } from '../services/laravel-server.service';
 export class AllBookingsComponent implements OnInit {
 
   public filterUser;
-  public bookingRecords:any = []
+  public bookingRecords: any = []
   public isLoading = true
   constructor(public server: LaravelServerService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.server.allBookings().subscribe(data=>{
-      console.log(data)
-      this.bookingRecords = data
-      this.isLoading = false
-    })
+    this.server.allBookings().subscribe(data => {
+      this.bookingRecords = data;
+      this.isLoading = false;
+    });
   }
 
   checkOut(booking): any{
     booking.type = 'checkOut';
-    this.dialog.open(DialogComponent, { data: booking });
+    const dialogRef = this.dialog.open(DialogComponent, { data: booking, width: '350px' });
+    dialogRef.afterClosed().subscribe(message => {
+      message === 'Check Out' ? this.ngOnInit() : console.log('Nothing');
+    });
   }
 }
