@@ -26,6 +26,9 @@
   <button mat-raised-button style="background-color: purple; color: white;" (click)="uploadDetails()">Upload Details <span [class.d-none]="noSpinnerShow" class="spinner-border spinner-border-sm"></span></button>
 </form>
 
+<div class="my-1" *ngIf="isLoading">
+  <span class="spinner-border text-danger"></span>
+</div>
 <table class="table" *ngIf="details.length !== 0">
   <tr>
     <th>S/N</th>
@@ -42,7 +45,7 @@
     <td><img src="assets/images/{{each.roomPic}}" class="fileImg"></td>
     <td>{{each.price | currency: 'NGN': 'symbol-narrow'}}</td>
     <td>{{each.numOf_available_rooms}}</td>
-    <td><button mat-raised-button style="background-color: purple; color: white;">Edit</button></td>
-    <td><button mat-raised-button style="background-color: purple; color: white;">Delete</button></td>
+    <td><button (click)="preview(each)" mat-raised-button style="background-color: purple; color: white;">Preview</button></td>
+    <td><button (click)="deleteDetails(each)" mat-raised-button style="background-color: purple; color: white;">Delete</button></td>
   </tr>
 </table>

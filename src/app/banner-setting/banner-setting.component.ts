@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
 import { LaravelServerService } from '../services/laravel-server.service';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-banner-setting',
@@ -18,7 +20,11 @@ export class BannerSettingComponent implements OnInit {
   public bannerFiles: any = [];
   public isLoading = true;
   public isDeleting = { index: '' };
-  constructor(public server: LaravelServerService, public snackBar: MatSnackBar) { }
+  constructor(
+    public server: LaravelServerService, 
+    public snackBar: MatSnackBar,
+    public dialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
     this.server.getMethod('getBanner').subscribe(banner=>{
@@ -53,9 +59,14 @@ export class BannerSettingComponent implements OnInit {
       this.snackBar.open('All fields are required', 'Redo', {duration: 3000})
     }
   }
-  deleteBanner(banner, i){
-    this.isDeleting = { index: i };
-    console.log(banner, i);
+  deleteBanner(banner, i): any{
+    banner.type = 'deleteBanner';
+    this.dialog.open(DialogComponent, { data: banner, disableClose: true, width: '350px' });
+  }
+
+  preview(banner): any {
+    banner.type = 'previewBanner';
+    this.dialog.open(DialogComponent, { data: banner, width: '350px' });
   }
 
 }

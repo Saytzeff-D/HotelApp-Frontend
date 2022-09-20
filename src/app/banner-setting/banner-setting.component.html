@@ -28,7 +28,7 @@
     <td><img src="assets/images/{{files.banner}}" class="fileImg"></td>
     <td>{{files.caption}}</td>
     <td>{{files.subCaption}}</td>
-    <td><button mat-raised-button style="background-color: purple; color: white;">Edit File</button></td>
+    <td><button (click)="preview(files)" mat-raised-button style="background-color: purple; color: white;">Preview</button></td>
     <td><button (click)="deleteBanner(files, i)" mat-raised-button style="background-color: purple; color: white;" [disabled]="isDeleting.index == 1" >Delete</button></td>
   </tr>
 </table>
