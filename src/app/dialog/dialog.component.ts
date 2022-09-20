@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { LaravelServerService } from '../services/laravel-server.service';
 
@@ -9,31 +10,59 @@ import { LaravelServerService } from '../services/laravel-server.service';
   styleUrls: ['./dialog.component.css']
 })
 export class DialogComponent implements OnInit {
-  public loggingOut = false
+  public loggingOut = false;
+  public isLoading = false;
 
   constructor(
     @Inject (MAT_DIALOG_DATA) public dialogData: any,
-     public dialogRef: MatDialogRef<DialogComponent>,
-     public server: LaravelServerService,
-     public router: Router
+    public dialogRef: MatDialogRef<DialogComponent>,
+    public server: LaravelServerService,
+    public router: Router,
+    public snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
-    console.log(this.dialogData)
+    // console.log(this.dialogData)
   }
-  onNoClick(){
-    this.dialogRef.close()
+  onNoClick(): any{
+    this.dialogRef.close();
   }
-  onYesClick(){
+  onYesClick(): any{
     this.loggingOut = true
     localStorage.removeItem('JWT')
     this.server.logout().subscribe((res:any)=>{
       if(res.message == 'Successfully logged out'){
         this.dialogRef.close()
         sessionStorage.setItem('successMsg', 'Successfully logged out')
-        this.router.navigate(['login'])
+        this.router.navigate(['login']);
       }
-    })
+    });
+  }
+
+  onYesCheckOut(): any {
+    this.isLoading = true;
+    const obj = { id: this.dialogData.booked_room_id };
+    this.server.checkOut(obj).subscribe(res => {
+      if (res === 'Success'){
+        this.dialogRef.close('Check Out');
+      }else {
+        this.snackBar.open('An error has occured', 'Dismiss');
+        this.isLoading = false;
+      }
+    }, err => {
+      this.isLoading = false;
+      this.snackBar.open('Internal Server Error', 'Dismiss');
+    });
+  }
+
+  deleteBanner(): any {
+    this.isLoading = true;
+    const obj = { id: this.dialogData.banner_id };
+  }
+
+  deleteRoom(): any {
+    this.isLoading = true;
+    const obj = { id: this.dialogData.details_id };
   }
 
 }
