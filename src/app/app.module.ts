@@ -31,6 +31,7 @@ import { VisitFilterPipe } from './pipes/visit-filter.pipe';
 import { VerifyPaymentComponent } from './verify-payment/verify-payment.component';
 import { BookingsFilterPipe } from './pipes/bookings-filter.pipe';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { ProfilePictureComponent } from './profile-picture/profile-picture.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
     VerifyPaymentComponent,
     BookingsFilterPipe,
     AdminLoginComponent,
+    ProfilePictureComponent,
   ],
   imports: [
     BrowserModule,
