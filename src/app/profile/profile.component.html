@@ -35,7 +35,6 @@
 
 <!-- Update Profile Picture -->
 <div>
-  <mat-spinner [diameter]="35" ></mat-spinner>
   <img [src]="dialogData.picture" alt="profile_pic"  class="rounded-circle shadow" width="150px" height="150px">
   <input type="file" name="pic" id="userPic" (change)="uploadPic($event)" class="d-none">
   <div class="d-flex justify-content-center">
