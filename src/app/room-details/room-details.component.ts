@@ -49,8 +49,8 @@ export class RoomDetailsComponent implements OnInit {
       detailsObj.append('numOf_available_rooms', this.roomDetails.value.numOf_available_rooms)
       this.server.uploadRoomDetails(detailsObj).subscribe(response=>{
         if(response == 'Details Uploaded'){
-          this.snackBar.open('Details of the room has been successfully updated', 'Undo', {duration: 3000})
-          this.noSpinnerShow =true
+          this.snackBar.open('Details uploaded successfully', 'Dismiss', {duration: 3000})
+          this.noSpinnerShow = true;
         }
       });
     } else {
@@ -60,7 +60,12 @@ export class RoomDetailsComponent implements OnInit {
 
   deleteDetails(details): any {
     details.type = 'deleteRoom';
-    this.dialog.open(DialogComponent, { data: details, disableClose: true, width: '400px' });
+    const dialogRef = this.dialog.open(DialogComponent, { data: details, disableClose: true, width: '400px' });
+    dialogRef.afterClosed().subscribe(message => {
+      if(message == 'Success') {
+        this.ngOnInit()
+      }else{}
+    });
   }
 
   preview(details): any{
