@@ -58,11 +58,25 @@ export class DialogComponent implements OnInit {
   deleteBanner(): any {
     this.isLoading = true;
     const obj = { id: this.dialogData.banner_id };
+    this.server.deleteBanner(obj).subscribe((res) => {
+      this.dialogRef.close(res);
+      this.snackBar.open('Banner deleted successfully', 'Dismiss');
+    }, (err) => {
+      this.isLoading = false;
+      console.log(err);
+    });
   }
 
   deleteRoom(): any {
     this.isLoading = true;
     const obj = { id: this.dialogData.details_id };
+    this.server.deleteRoom(obj).subscribe((res) => {
+      this.dialogRef.close(res);
+      this.snackBar.open('Details deleted successfully', 'Dismiss');
+    }, (err) => {
+      console.log(err);
+      this.isLoading = false;
+    });
   }
 
 }
