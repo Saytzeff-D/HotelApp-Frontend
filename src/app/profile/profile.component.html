@@ -32,13 +32,3 @@
   </div>
   <button class="btn btn-purple" (click)="editProfile()">Edit Profile</button>
 </fieldset> -->
-
-<!-- Update Profile Picture -->
-<div>
-  <img [src]="dialogData.picture" alt="profile_pic"  class="rounded-circle shadow" width="150px" height="150px">
-  <input type="file" name="pic" id="userPic" (change)="uploadPic($event)" class="d-none">
-  <div class="d-flex justify-content-center">
-    <button class="btn btn-purple mx-1" (click)="takePic()" >Change</button> 
-    <button class="btn mx-1" (click)="onCancel()" >Cancel</button>
-  </div>
-</div>
