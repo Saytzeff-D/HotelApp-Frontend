@@ -6,7 +6,7 @@ import { map, shareReplay } from 'rxjs/operators';
 import { LaravelServerService } from '../services/laravel-server.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
-import { ProfileComponent } from '../profile/profile.component';
+import { ProfilePictureComponent } from '../profile-picture/profile-picture.component';
 
 @Component({
   selector: 'app-user',
@@ -53,11 +53,11 @@ export class UserComponent implements OnInit {
       }
     });
   }
-  logOut(){
-    this.dialogRef.open(DialogComponent, {disableClose: true});
+  logOut(): any{
+    this.dialogRef.open(DialogComponent, { data: { type: 'logout' }, disableClose: true });
   }
   viewPicture(imgUrl): any {
-    this.dialogRef.open(ProfileComponent, {data: { picture: imgUrl }} );
+    this.dialogRef.open(ProfilePictureComponent, {data: { picture: imgUrl }, disableClose: true } );
   }
 
 }
