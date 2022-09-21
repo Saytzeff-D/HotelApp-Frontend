@@ -26,6 +26,7 @@ const routes: Routes = [
   {path: 'hotel-category', component: HotelCategoryComponent},
   {path: 'book-room', component: BookRoomComponent},
   {path: 'payNow', component: PaymentComponent},
+  { path: 'admin', pathMatch: 'full', redirectTo: '/admin/banner-setting' },
   {path: 'admin', component: AdminComponent, children: [
     {path: 'banner-setting', component: BannerSettingComponent},
     {path: 'roomDetails', component: RoomDetailsComponent},
