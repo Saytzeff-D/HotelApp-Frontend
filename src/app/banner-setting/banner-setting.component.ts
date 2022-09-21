@@ -21,7 +21,7 @@ export class BannerSettingComponent implements OnInit {
   public isLoading = true;
   public isDeleting = { index: '' };
   constructor(
-    public server: LaravelServerService, 
+    public server: LaravelServerService,
     public snackBar: MatSnackBar,
     public dialog: MatDialog
   ) { }
@@ -61,7 +61,10 @@ export class BannerSettingComponent implements OnInit {
   }
   deleteBanner(banner, i): any{
     banner.type = 'deleteBanner';
-    this.dialog.open(DialogComponent, { data: banner, disableClose: true, width: '350px' });
+    const dialogRef = this.dialog.open(DialogComponent, { data: banner, disableClose: true, width: '350px' });
+    dialogRef.afterClosed().subscribe(message => {
+      message == 'Success' ? this.ngOnInit() : '';
+    });
   }
 
   preview(banner): any {
