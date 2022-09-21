@@ -28,28 +28,28 @@ export class LaravelServerService {
     return this.http.post(`${this.baseUrl}uploadDetails`, details)
   }
   fetchUser(){
-    return this.http.post(`${this.baseUrl}me`, 'User')
+    return this.http.post(`${this.baseUrl}me`, 'User');
   }
   token(){
     return localStorage.getItem('JWT');
   }
   uploadUserPic(file){
-    return this.http.post(`${this.baseUrl}editProfile`, file)
+    return this.http.post(`${this.baseUrl}editProfile`, file);
   }
   updateUserProfile(obj){
-    return this.http.post(`${this.baseUrl}editProfile`, obj)
+    return this.http.post(`${this.baseUrl}editProfile`, obj);
   }
   checkAvailableRoom(roomInfo){
-    return this.http.post(`${this.baseUrl}checkRoom`, roomInfo)
+    return this.http.post(`${this.baseUrl}checkRoom`, roomInfo);
   }
   getRoomPrice(roomCategory){
-    return this.http.post(`${this.baseUrl}getRoomPrice`, roomCategory)
+    return this.http.post(`${this.baseUrl}getRoomPrice`, roomCategory);
   }
   logout(){
-    return this.http.post(`${this.baseUrl}logout`, 'Logout')
+    return this.http.post(`${this.baseUrl}logout`, 'Logout');
   }
   payNow(payInfo){
-    return this.http.post(`${this.baseUrl}pay`, payInfo)
+    return this.http.post(`${this.baseUrl}pay`, payInfo);
   }
   transHistory(){
     return this.http.get(`${this.baseUrl}transHistory`);
@@ -65,5 +65,11 @@ export class LaravelServerService {
   }
   checkOut(booking): any{
     return this.http.patch(`${this.baseUrl}checkOut`, booking);
+  }
+  deleteRoom(id): any {
+    return this.http.patch(`${this.baseUrl}room`, id);
+  }
+  deleteBanner(id): any {
+    return this.http.patch(`${this.baseUrl}banner`, id);
   }
 }
