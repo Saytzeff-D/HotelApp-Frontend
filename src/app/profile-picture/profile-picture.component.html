@@ -1,1 +1,12 @@
-<p>profile-picture works!</p>
+<div *ngIf="isUploading">
+  <span class="spinner-border text-primary"></span>
+</div>
+
+<div *ngIf="!isUploading">
+  <img [src]="dialogData.picture" alt="profilepic" height="200px" width="200px" class="rounded-circle" >
+  <input (change)="uploadPic($event)" type="file" class="d-none" id="userPic" />
+  <div class="d-flex my-2">
+    <button (click)="takePic()" mat-raised-button class="btn-primary mx-1">Change</button>
+    <button (click)="onCancel()" mat-raised-button class="btn-light mx-1">Cancel</button>
+  </div>
+</div>
